@@ -1,6 +1,8 @@
 package com.example.EmployeeTrackingApp;
 
+import com.example.EmployeeTrackingApp.models.Department;
 import com.example.EmployeeTrackingApp.models.Employee;
+import com.example.EmployeeTrackingApp.repos.DepartmentRepository;
 import com.example.EmployeeTrackingApp.repos.EmployeeRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,13 +17,19 @@ public class EmployeeTrackingAppApplicationTests {
 	@Autowired
 	EmployeeRepository employeeRepo;
 
+	@Autowired
+	DepartmentRepository departmentRepository;
+
 	@Test
 	public void contextLoads() {
 	}
 
 	@Test
-	public void canCreateEmployee() {
-		Employee employee = new Employee("Milton", "Waddams", 34, 5, "milton.fired@doesntworkhere.com" );
+	public void canCreateDepartment() {
+		Department department = new Department("Sales");
+		departmentRepository.save(department);
+
+		Employee employee = new Employee("Milton", "Waddams", 34, 5, "milton.fired@doesntworkhere.com", department );
 		employeeRepo.save(employee);
 	}
 
